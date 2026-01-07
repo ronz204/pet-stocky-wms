@@ -1,11 +1,11 @@
 import express from "express";
 
-const expr = express();
+const app = express();
 
-expr.get("/", (req, res) => {
-  res.status(200).json({ message: "Hello, World!" });
+app.get("/ping", (req, res) => {
+  res.status(200).json({ message: "pong" });
 });
 
-expr.listen(3000, () => {
+app.listen(3000, () => {
   console.log("Server is running on http://localhost:3000");
 });
