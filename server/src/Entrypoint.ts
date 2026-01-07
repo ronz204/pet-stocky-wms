@@ -1,6 +1,7 @@
 import http from "http";
 import cors from "cors";
 import express from "express";
+import { AppConfig } from "@Configs/App";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@as-integrations/express5";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
@@ -35,8 +36,8 @@ app.use(cors({ origin: "*" }));
 app.use("/graphql", express.json(), expressMiddleware(apollo));
 
 await new Promise<void>((resolve) => {
-  server.listen({ port: 3000 }, resolve);
+  server.listen({ port: AppConfig.port }, resolve);
 });
 
-console.log("Server is running on http://localhost:3000");
-console.log("GraphQL is running on http://localhost:3000/graphql");
+console.log(`Server is running on http://localhost:${AppConfig.port}`);
+console.log(`GraphQL is running on http://localhost:${AppConfig.port}/graphql`);
