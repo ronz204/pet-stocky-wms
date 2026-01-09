@@ -30,6 +30,9 @@
     "paths": {
       // Infrastructure
       "@Configs/*": ["./src/Infrastructure/Configs/*"],
+
+      // Presentation
+      "@Controllers/*": ["./src/Presentation/Controllers/*"],
     }
   }
 }
