@@ -4,6 +4,7 @@ import express from "express";
 import { AppConfig } from "@Configs/App";
 import { CorsConfig } from "@Configs/Cors";
 import { ApolloServer } from "@apollo/server";
+import { LimiterConfig } from "@Configs/Limit";
 import { expressMiddleware } from "@as-integrations/express5";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 
@@ -33,6 +34,7 @@ const apollo = new ApolloServer({
 
 await apollo.start();
 
+app.use(LimiterConfig);
 app.use(cors(CorsConfig));
 app.use("/graphql", express.json(), expressMiddleware(apollo));
 
