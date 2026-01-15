@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.50",
   "scripts": {
-    "dev": "bun run --watch src/Entrypoint.ts"
+    "dev": "bun run --watch src/entrypoint.ts"
   },
   "dependencies": {
     "@elysiajs/graphql-yoga": "^1.4.0",
@@ -13,5 +13,5 @@
   },
   "private": true,
   "type": "module",
-  "module": "src/Entrypoint.ts"
+  "module": "src/entrypoint.ts"
 }

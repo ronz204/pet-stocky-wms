@@ -30,7 +30,7 @@ bun run dev
 ```
 .
 ├── src/
-│   └── Entrypoint.ts     # Main server file
+│   └── entrypoint.ts     # Main server file
 ├── package.json          # Project configuration
 ├── tsconfig.json         # TypeScript configuration
 └── Dockerfile            # Docker configuration
