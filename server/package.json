@@ -5,6 +5,7 @@
     "dev": "bun run --watch src/entrypoint.ts"
   },
   "dependencies": {
+    "@elysiajs/cors": "^1.4.1",
     "@elysiajs/graphql-yoga": "^1.4.0",
     "elysia": "latest"
   },
