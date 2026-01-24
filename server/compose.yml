@@ -1,0 +1,13 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: graphql-server
+    ports:
+      - "3000:3000"
+    networks:
+      - graphql-network
+    depends_on:
+      postgres:
+        condition: service_healthy
