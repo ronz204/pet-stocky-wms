@@ -22,6 +22,12 @@
     "noUncheckedIndexedAccess": true,
 
     // Bun runtime types
-    "types": ["@types/bun"]
+    "types": ["@types/bun"],
+
+    // Path aliases
+    "paths": {
+      "@Prisma/*": ["./generated/prisma/*"],
+      "@Database/*": ["./src/infrastructure/database/*"]
+    }
   }
 }
