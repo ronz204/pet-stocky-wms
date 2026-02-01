@@ -1,8 +1,8 @@
 -- CreateSchema
-CREATE SCHEMA IF NOT EXISTS "core";
+CREATE SCHEMA IF NOT EXISTS "graphql";
 
 -- CreateTable
-CREATE TABLE "core"."users" (
+CREATE TABLE "graphql"."users" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE "core"."users" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "users_name_key" ON "core"."users"("name");
+CREATE UNIQUE INDEX "users_name_key" ON "graphql"."users"("name");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "users_email_key" ON "core"."users"("email");
+CREATE UNIQUE INDEX "users_email_key" ON "graphql"."users"("email");

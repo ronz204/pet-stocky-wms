@@ -11,17 +11,5 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  schemas = ["core"]
-}
-
-model User {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("users")
-  @@schema("core")
+  schemas = ["graphql"]
 }
