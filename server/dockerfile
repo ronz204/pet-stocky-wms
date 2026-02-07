@@ -2,9 +2,11 @@ FROM oven/bun:1.3.5-alpine AS base
 WORKDIR /usr/src/app
 
 COPY package.json bun.lock ./
+COPY prisma ./prisma
 
 FROM base AS development
-RUN bun install --frozen-lockfile
+RUN bun install --frozen-lockfile && \
+  bunx --bun prisma generate
 
 COPY . .
 USER bun
@@ -13,7 +15,8 @@ EXPOSE 3000
 ENTRYPOINT [ "bun", "run", "start" ]
 
 FROM base AS dependencies
-RUN bun install --frozen-lockfile --production
+RUN bun install --frozen-lockfile --production && \
+  bunx --bun prisma generate
 
 FROM base AS building
 COPY --from=dependencies /usr/src/app/node_modules ./node_modules
