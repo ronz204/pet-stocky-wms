@@ -1,5 +1,6 @@
 # Dependencies
 node_modules
+generated
 bun.lockb
 
 # Development files
@@ -36,6 +37,7 @@ coverage
 dist
 build
 .cache
+*.exe
 
 # Environment
 .env
