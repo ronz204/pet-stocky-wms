@@ -6,12 +6,15 @@ FROM base AS dependencies
 COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
-# === Development Stage ===
-FROM dependencies  AS development
-
+# === Prisma Generation Stage ===
+FROM dependencies AS prisma
 COPY prisma ./prisma
+
+COPY prisma.config.ts ./
 RUN bunx --bun prisma generate
 
+# === Development Stage ===
+FROM prisma  AS development
 COPY . .
 USER bun
 
@@ -19,11 +22,7 @@ EXPOSE 3000
 ENTRYPOINT [ "bun", "run", "start" ]
 
 ## === Building Stage ===
-FROM dependencies AS building
-
-COPY prisma ./prisma
-RUN bunx --bun prisma generate
-
+FROM prisma AS building
 COPY . .
 RUN bun run build
 
