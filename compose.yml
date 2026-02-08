@@ -7,8 +7,8 @@ include:
 services:
   elysia:
     build:
-      target: development
-    container_name: elysia-dev
+      target: production
+    container_name: elysia-prod
 
 volumes:
   graphql-data:
