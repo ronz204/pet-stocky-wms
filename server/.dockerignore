@@ -38,6 +38,7 @@ dist
 build
 .cache
 *.exe
+graph*
 
 # Environment
 .env
