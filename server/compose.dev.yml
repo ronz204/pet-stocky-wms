@@ -1,0 +1,16 @@
+services:
+  elysia:
+    build:
+      target: development
+    extends:
+      service: elysia
+      file: compose.base.yml
+    container_name: elysia-dev
+  
+  migrations:
+    build:
+      target: development
+    extends:
+      service: migrations
+      file: compose.base.yml
+    container_name: migrations-dev
