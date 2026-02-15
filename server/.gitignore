@@ -16,7 +16,6 @@
 # production
 /build
 *.exe
-graph*
 
 # misc
 .DS_Store
