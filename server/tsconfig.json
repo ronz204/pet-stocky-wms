@@ -28,6 +28,9 @@
     "paths": {
       "@Prisma/*": ["./generated/prisma/*"],
 
+      "@GraphQL/*": ["./source/Application/Graphql/*"],
+      "@Handlers/*": ["./source/Application/Handlers/*"],
+
       "@Configs/*": ["./source/Infrastructure/Configs/*"],
       "@Database/*": ["./source/Infrastructure/Database/*"],
 
