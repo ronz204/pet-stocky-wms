@@ -6,6 +6,7 @@ services:
       service: elysia
       file: compose.base.yml
     container_name: elysia-prod
+    # Healthcheck to ensure the service is running properly
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
       interval: 30s
