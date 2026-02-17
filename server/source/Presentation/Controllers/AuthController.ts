@@ -1,20 +1,19 @@
 import { Elysia, type ElysiaConfig, t } from "elysia";
 
+import { LoginSchema } from "@Handlers/Authentication/LoginSchema";
+import { LoginHandler } from "@Handlers/Authentication/LoginHandler";
+
+const loginHandler = new LoginHandler();
+
 const config: ElysiaConfig<"/auth"> = {
   prefix: "/auth", name: "auth-controller",
 };
 
 export const AuthController = new Elysia(config)
   .post("/login", async ({ body }) => {
-    console.log(body.email);
-    console.log(body.password);
-
-    return { message: "Login successful" };
+    return await loginHandler.handle(body)
   }, {
-    body: t.Object({
-      email: t.String(),
-      password: t.String(),
-    }),
+    body: LoginSchema
   })
   .post("/register", async ({ body }) => {
     console.log(body.email);
