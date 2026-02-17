@@ -15,4 +15,17 @@ export const AuthController = new Elysia(config)
       email: t.String(),
       password: t.String(),
     }),
+  })
+  .post("/register", async ({ body }) => {
+    console.log(body.email);
+    console.log(body.password);
+    console.log(body.username);
+
+    return { message: "Registration successful" };
+  }, {
+    body: t.Object({
+      email: t.String(),
+      password: t.String(),
+      username: t.String(),
+    }),
   });
