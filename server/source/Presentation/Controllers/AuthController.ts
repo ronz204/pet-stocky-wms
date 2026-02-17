@@ -3,7 +3,11 @@ import { Elysia, type ElysiaConfig, t } from "elysia";
 import { LoginSchema } from "@Handlers/Authentication/LoginSchema";
 import { LoginHandler } from "@Handlers/Authentication/LoginHandler";
 
+import { RegisterSchema } from "@Handlers/Authentication/RegisterSchema";
+import { RegisterHandler } from "@Handlers/Authentication/RegisterHandler";
+
 const loginHandler = new LoginHandler();
+const registerHandler = new RegisterHandler();
 
 const config: ElysiaConfig<"/auth"> = {
   prefix: "/auth", name: "auth-controller",
@@ -16,15 +20,7 @@ export const AuthController = new Elysia(config)
     body: LoginSchema
   })
   .post("/register", async ({ body }) => {
-    console.log(body.email);
-    console.log(body.password);
-    console.log(body.username);
-
-    return { message: "Registration successful" };
+    return await registerHandler.handle(body);
   }, {
-    body: t.Object({
-      email: t.String(),
-      password: t.String(),
-      username: t.String(),
-    }),
+    body: RegisterSchema,
   });
