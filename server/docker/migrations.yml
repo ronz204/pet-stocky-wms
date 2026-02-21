@@ -1,0 +1,9 @@
+services:
+  migrations:
+    entrypoint: ["bunx", "--bun", "prisma", "migrate", "deploy"]
+    depends_on:
+      # Wait for the database to be healthy
+      postgres:
+        condition: service_healthy
+    networks:
+     - graphql-network
