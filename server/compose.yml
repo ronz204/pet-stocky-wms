@@ -1,42 +1,43 @@
+name: graph
+
 services:
-  elysia:
+  graphql:
+    env_file: ".env"
     build:
       context: .
       target: development
       dockerfile: dockerfile
     extends:
-      file: common.yml
-      service: elysia
-    container_name: elysia-dev
-    restart: unless-stopped
-    develop:
-      watch:
-        # Sync source code changes
-        - action: sync
-          path: ./source
-          target: /usr/src/app/source
-
-        # Rebuild when Prisma models change
-        - action: rebuild
-          path: ./prisma/
-
-        # Sync package.json for dependency tracking
-        - action: sync
-          path: ./package.json
-          target: /usr/src/app/package.json
-
-        # Rebuild when dependencies change
-        - action: rebuild
-          path: ./bun.lock
+      service: graphql
+      file: ./docker/graphql.yml
+    container_name: graphql-dev
   
+  postgres:
+    env_file: ".env"
+    extends:
+      service: postgres
+      file: ./docker/postgres.yml
+    container_name: postgres-dev
+
   migrations:
+    env_file: ".env"
     build:
       context: .
       target: development
       dockerfile: dockerfile
     extends:
-      file: override.yml
       service: migrations
+      file: ./docker/migrations.yml
     container_name: migrations-dev
     # Do not restart the migrations container
     restart: "no"
+
+volumes:
+  graphql-data:
+    driver: local
+    name: graphql-data
+
+networks:
+  graphql-network:
+    driver: bridge
+    name: graphql-network
