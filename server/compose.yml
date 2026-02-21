@@ -5,7 +5,7 @@ services:
       target: development
       dockerfile: dockerfile
     extends:
-      file: override.yml
+      file: common.yml
       service: elysia
     container_name: elysia-dev
     restart: unless-stopped
