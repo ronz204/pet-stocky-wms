@@ -9,8 +9,8 @@ RUN bun install --frozen-lockfile
 # === Prisma Stage ===
 FROM dependencies AS prisma
 
-ARG DATABASE_URL="postgresql://dummy:dummy@postgres:5432/dummy"
-ENV DATABASE_URL=${DATABASE_URL}
+ARG POSTGRES_URL="postgresql://dummy:dummy@postgres:5432/dummy"
+ENV POSTGRES_URL=${POSTGRES_URL}
 
 COPY prisma ./prisma
 COPY prisma.config.ts ./
