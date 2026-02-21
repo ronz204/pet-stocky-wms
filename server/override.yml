@@ -1,0 +1,31 @@
+services:
+  elysia:
+    env_file: ".env"
+    healthcheck:
+      # Use curl to check if the application is healthy
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    depends_on:
+      # Wait for the database to be healthy
+      postgres:
+        condition: service_healthy
+      # Wait for migrations to complete
+      migrations:
+        condition: service_completed_successfully
+    networks:
+      - graphql-network
+    ports:
+      - "3000:3000"
+
+  migrations:
+    env_file: ".env"
+    entrypoint: ["bunx", "--bun", "prisma", "migrate", "deploy"]
+    depends_on:
+      # Wait for the database to be healthy
+      postgres:
+        condition: service_healthy
+    networks:
+     - graphql-network
