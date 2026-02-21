@@ -1,0 +1,15 @@
+name: graph
+
+include:
+  - path: ./server/compose.yml
+  - path: ./docker/database/compose.yml
+
+volumes:
+  graphql-data:
+    driver: local
+    name: graphql-data
+
+networks:
+  graphql-network:
+    driver: bridge
+    name: graphql-network
