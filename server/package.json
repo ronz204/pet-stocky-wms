@@ -1,9 +1,9 @@
 {
-  "name": "server",
+  "name": "stocky",
   "version": "1.0.50",
   "scripts": {
     "start": "bun run --watch source/Entrypoint.ts",
-    "build": "bun build source/Entrypoint.ts --compile --outfile=graph"
+    "build": "bun build source/Entrypoint.ts --compile --outfile=stocky"
   },
   "dependencies": {
     "@elysiajs/cors": "^1.4.1",

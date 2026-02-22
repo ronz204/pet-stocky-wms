@@ -34,10 +34,10 @@ FROM alpine:3.23 AS production
 WORKDIR /usr/src/app
 
 RUN apk add --no-cache libstdc++ libgcc && \
-  addgroup -S graphgroup && adduser -S graphuser -G graphgroup
+  addgroup -S stockygroup && adduser -S stockyuser -G stockygroup
 
-COPY --from=building --chown=graphuser:graphgroup /usr/src/app/graph .
-USER graphuser
+COPY --from=building --chown=stockyuser:stockygroup /usr/src/app/stocky .
+USER stockyuser
 
 EXPOSE 3000
-ENTRYPOINT [ "./graph" ]
+ENTRYPOINT [ "./stocky" ]
