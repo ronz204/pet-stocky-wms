@@ -1,1 +1,1 @@
-### Proof of Concepts | Graphql
+### Stocky | Werehouse Management System
