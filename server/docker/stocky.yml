@@ -1,5 +1,5 @@
 services:
-  graphql:
+  stocky:
     healthcheck:
       # Use curl to check if the application is healthy
       test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
@@ -34,6 +34,6 @@ services:
         - action: rebuild
           path: ./bun.lock
     networks:
-      - graphql-network
+      - stocky-network
     ports:
       - "3000:3000"
