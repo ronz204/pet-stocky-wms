@@ -8,7 +8,7 @@ services:
       - stocky-data:/var/lib/postgresql/data
     healthcheck:
       # Use pg_isready to check if the database is ready
-      test: ["CMD-SHELL", "pg_isready -U stocky -d stocky"]
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 10s
       timeout: 5s
       retries: 5
