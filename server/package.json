@@ -3,7 +3,8 @@
   "version": "1.0.50",
   "scripts": {
     "start:prod": "bun run source/entry.ts",
-    "start:dev": "bun run --watch source/entry.ts"
+    "start:dev": "bun run --watch source/entry.ts",
+    "prisma:types": "bunx --bun prisma generate"
   },
   "dependencies": {
     "@elysiajs/cors": "^1.4.1",
