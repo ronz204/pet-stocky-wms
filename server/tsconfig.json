@@ -28,6 +28,8 @@
     "paths": {
       "@seeders/*": ["./prisma/seeds/*"],
       "@prisma/*": ["./generated/prisma/*"],
+
+      "@features/*": ["./source/features/*"],
     }
   }
 }
