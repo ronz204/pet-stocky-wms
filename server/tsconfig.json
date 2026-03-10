@@ -26,16 +26,8 @@
 
     // Path aliases
     "paths": {
-      "@Prisma/*": ["./generated/prisma/*"],
-
-      "@GraphQL/*": ["./source/Application/Graphql/*"],
-      "@Handlers/*": ["./source/Application/Handlers/*"],
-
-      "@Configs/*": ["./source/Infrastructure/Configs/*"],
-      "@Database/*": ["./source/Infrastructure/Database/*"],
-
-      "@Controllers/*": ["./source/Presentation/Controllers/*"],
-      "@Middlewares/*": ["./source/Presentation/Middlewares/*"],
+      "@seeders/*": ["./prisma/seeds/*"],
+      "@prisma/*": ["./generated/prisma/*"],
     }
   }
 }
