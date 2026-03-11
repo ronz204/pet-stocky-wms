@@ -8,36 +8,17 @@ RUN bun install --frozen-lockfile
 
 # === Prisma Stage ===
 FROM dependencies AS prisma
-
 ARG POSTGRES_URL="postgresql://dummy:dummy@postgres:5432/dummy"
 ENV POSTGRES_URL=${POSTGRES_URL}
 
 COPY prisma ./prisma
 COPY prisma.config.ts ./
-RUN bunx --bun prisma generate
+RUN bun run prisma:generate
 
 # === Development Stage ===
 FROM prisma  AS development
-COPY . .
+COPY --chown=bun:bun . .
 USER bun
 
 EXPOSE 3000
-ENTRYPOINT [ "bun", "run", "start" ]
-
-## === Building Stage ===
-FROM prisma AS building
-COPY . .
-RUN bun run build
-
-# === Production Stage ===
-FROM alpine:3.23 AS production
-WORKDIR /usr/src/app
-
-RUN apk add --no-cache libstdc++ libgcc && \
-  addgroup -S stockygroup && adduser -S stockyuser -G stockygroup
-
-COPY --from=building --chown=stockyuser:stockygroup /usr/src/app/stocky .
-USER stockyuser
-
-EXPOSE 3000
-ENTRYPOINT [ "./stocky" ]
+ENTRYPOINT [ "bun", "run", "start:dev" ]
