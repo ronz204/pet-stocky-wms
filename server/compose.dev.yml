@@ -29,23 +29,13 @@ services:
           path: ./bun.lock
 
   postgres:
-    env_file: ".env"
-    image: postgres:16-alpine
+    extends:
+      service: postgres
+      file: ./compose.base.yml
     container_name: postgres
     restart: unless-stopped
     ports:
       - "5432:5432"
-    networks:
-      - stocky-net
-    volumes:
-      - stocky-data:/var/lib/postgresql/data
-    healthcheck:
-      # Use pg_isready to check if the database is ready
-      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 15s
 
   migrations:
     build:
