@@ -1,12 +1,6 @@
 services:
   stocky:
     env_file: ".env"
-    build:
-      context: .
-      target: development
-      dockerfile: dockerfile
-    container_name: stocky
-    restart: unless-stopped
     depends_on:
       # Wait for the database to be healthy
       postgres:
@@ -16,11 +10,10 @@ services:
         condition: service_completed_successfully
     networks:
       - stocky-network
-
+  
   postgres:
-    image: postgres:16-alpine
     env_file: ".env"
-    restart: unless-stopped
+    image: postgres:16-alpine
     networks:
       - stocky-network
     volumes:
@@ -32,14 +25,12 @@ services:
       timeout: 5s
       retries: 5
       start_period: 15s
-
+  
   migrations:
     env_file: ".env"
-    build:
-      context: .
-      target: development
-      dockerfile: dockerfile
-    container_name: migrations
-    restart: "no"
+    depends_on:
+      # Wait for the database to be healthy
+      postgres:
+        condition: service_healthy
     networks:
-      - stocky-network
+     - stocky-network
