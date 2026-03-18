@@ -1,0 +1,16 @@
+services:
+  stocky:
+    build:
+      context: .
+      target: development
+      dockerfile: dockerfile
+    container_name: stocky
+    restart: unless-stopped
+
+  migrations:
+    build:
+      context: .
+      target: development
+      dockerfile: dockerfile
+    container_name: migrations
+    restart: "no"
