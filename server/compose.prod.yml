@@ -1,0 +1,29 @@
+services:
+  stocky:
+    build:
+      context: .
+      target: production
+      dockerfile: dockerfile
+    extends:
+      service: stocky
+      file: ./compose.base.yml
+    container_name: stocky
+    restart: unless-stopped
+    healthcheck:
+      # Use curl to check if the application is healthy
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  migrations:
+    build:
+      context: .
+      target: development
+      dockerfile: dockerfile
+    extends:
+      service: migrations
+      file: ./compose.base.yml
+    container_name: migrations
+    restart: "no"
