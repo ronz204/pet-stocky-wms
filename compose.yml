@@ -1,5 +1,8 @@
 name: stocky
 
+include:
+  - path: ./server/compose.dev.yml
+
 volumes:
   stocky-data:
     driver: local
