@@ -1,0 +1,49 @@
+services:
+  stocky:
+    build:
+      context: .
+      target: development
+      dockerfile: dockerfile
+    extends:
+      service: stocky
+      file: ./compose.base.yml
+    container_name: stocky
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    develop:
+      watch:
+        # Sync source code changes
+        - action: sync
+          path: ./source
+          target: /usr/src/app/source
+        # Rebuild when Prisma models change
+        - action: rebuild
+          path: ./prisma/
+        # Sync package.json for dependency tracking
+        - action: sync
+          path: ./package.json
+          target: /usr/src/app/package.json
+        # Rebuild when dependencies change
+        - action: rebuild
+          path: ./bun.lock
+
+  postgres:
+    extends:
+      service: postgres
+      file: ./compose.base.yml
+    container_name: postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+
+  migrations:
+    build:
+      context: .
+      target: development
+      dockerfile: dockerfile
+    extends:
+      service: migrations
+      file: ./compose.base.yml
+    container_name: migrations
+    restart: "no"
