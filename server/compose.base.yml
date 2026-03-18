@@ -9,7 +9,7 @@ services:
       migrations:
         condition: service_completed_successfully
     networks:
-      - stocky-network
+      - stocky-net
   
   migrations:
     env_file: ".env"
@@ -18,4 +18,4 @@ services:
       postgres:
         condition: service_healthy
     networks:
-     - stocky-network
+     - stocky-net
