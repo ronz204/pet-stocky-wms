@@ -28,6 +28,7 @@ services:
   
   migrations:
     env_file: ".env"
+    entrypoint: ["bunx", "--bun", "prisma", "migrate", "deploy"]
     depends_on:
       # Wait for the database to be healthy
       postgres:

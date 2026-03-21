@@ -6,7 +6,7 @@ services:
       dockerfile: dockerfile
     extends:
       service: stocky
-      file: ./compose.base.yml
+      file: ./common.yml
     container_name: stocky
     restart: unless-stopped
     ports:
@@ -31,7 +31,7 @@ services:
   postgres:
     extends:
       service: postgres
-      file: ./compose.base.yml
+      file: ./common.yml
     container_name: postgres
     restart: unless-stopped
     ports:
@@ -44,6 +44,6 @@ services:
       dockerfile: dockerfile
     extends:
       service: migrations
-      file: ./compose.base.yml
+      file: ./common.yml
     container_name: migrations
     restart: "no"
