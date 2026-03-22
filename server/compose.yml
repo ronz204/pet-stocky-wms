@@ -1,19 +1,18 @@
 services:
   graphql:
+    env_file: ".env"
     build:
       context: .
       target: development
       dockerfile: dockerfile
-    extends:
-      service: graphql
-      file: ./compose.base.yml
     container_name: stocky
     restart: unless-stopped
+    networks:
+      - stocky-net
     ports:
       - "3000:3000"
     depends_on:
-      # Wait for the database to be healthy
-      postgres:
+      postgres: # Wait for the database to be healthy
         condition: service_healthy
     develop:
       watch:
@@ -31,12 +30,28 @@ services:
         # Rebuild when dependencies change
         - action: rebuild
           path: ./bun.lock
-
+    healthcheck: # Use curl to check if the application is healthy
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+  
   postgres:
-    extends:
-      service: postgres
-      file: ./compose.base.yml
+    env_file: ".env"
+    image: postgres:16-alpine
     container_name: postgres
     restart: unless-stopped
+    networks:
+      - stocky-net
     ports:
       - "5432:5432"
+    volumes:
+      - stocky-data:/var/lib/postgresql/data
+    healthcheck:
+      # Use pg_isready to check if the database is ready
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
