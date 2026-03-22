@@ -21,3 +21,19 @@ USER bun
 
 EXPOSE 3000
 ENTRYPOINT [ "bun", "run", "start:dev" ]
+
+## === Building Stage ===
+FROM prisma AS building
+COPY --chown=bun:bun . .
+RUN bun run build
+
+# === Production Stage ===
+FROM alpine:3.23 AS production
+WORKDIR /usr/src/app
+
+RUN apk add --no-cache libstdc++ libgcc
+COPY --from=building /usr/src/app/stocky .
+
+USER bun
+EXPOSE 3000
+ENTRYPOINT [ "./stocky" ]
