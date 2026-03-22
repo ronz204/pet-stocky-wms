@@ -1,0 +1,26 @@
+services:
+  api:
+    build:
+      context: .
+      target: production
+      dockerfile: dockerfile
+    extends:
+      service: api
+      file: compose.base.yml
+    container_name: stocky-prod
+    restart: unless-stopped
+    env_file: .env.prod
+    healthcheck: # Use curl to check if the application is healthy
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+  
+  postgres:
+    extends:
+      service: postgres
+      file: compose.base.yml
+    container_name: postgres-prod
+    restart: unless-stopped
+    env_file: .env.prod
