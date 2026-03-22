@@ -17,6 +17,9 @@ bun.lockb
 Dockerfile
 common.yml
 compose.yml
+compose.base.yml
+compose.dev.yml
+compose.prod.yml
 .dockerignore
 
 # IDE
