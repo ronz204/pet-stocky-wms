@@ -1,0 +1,11 @@
+model Tenant {
+  id        Int    @id @default(autoincrement())
+  name      String @unique
+  subdomain String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("tenants")
+  @@schema("stocky")
+}
