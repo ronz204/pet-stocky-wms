@@ -4,9 +4,6 @@ model User {
   email    String @unique
   password String
 
-  tenantId Int
-  tenant   Tenant @relation(fields: [tenantId], references: [id])
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
