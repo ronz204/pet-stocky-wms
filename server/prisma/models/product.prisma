@@ -1,3 +1,4 @@
+/// Product. It has no stock; just define what it is.
 model Product {
   id   String @id @default(uuid())
   sku  String @unique
