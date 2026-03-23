@@ -4,6 +4,8 @@ model Werehouse {
   name    String
   address String
 
+  locations Location[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

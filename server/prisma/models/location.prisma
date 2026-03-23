@@ -1,0 +1,19 @@
+/// Specific location within the warehouse (Bin)
+model Location {
+  id   String @id @default(uuid())
+  code String
+
+  maxWeight Decimal? // kg
+  maxVolume Decimal? // m3
+
+  isActive Boolean @default(true)
+
+  wereHouseId String // Foreign key to Werehouse
+  wereHouse   Werehouse @relation(fields: [wereHouseId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("locations")
+  @@schema("stocky")
+}
