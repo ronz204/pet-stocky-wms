@@ -1,0 +1,19 @@
+model Product {
+  id   String @id @default(uuid())
+  sku  String @unique
+  name String
+
+  uow String @default("UNIT")
+
+  weight Decimal @default(0) @db.Decimal(10, 2) // kg
+  volume Decimal @default(0) @db.Decimal(10, 2) // m3
+  height Decimal @default(0) @db.Decimal(10, 2) // cm
+  width  Decimal @default(0) @db.Decimal(10, 2) // cm
+  depth  Decimal @default(0) @db.Decimal(10, 2) // cm
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("products")
+  @@schema("stocky")
+}
