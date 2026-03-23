@@ -5,6 +5,7 @@
     "start:prod": "bun run source/entry.ts",
     "start:dev": "bun run --watch source/entry.ts",
     "prisma:generate": "bunx --bun prisma generate",
+    "prisma:migrate": "bunx --bun prisma migrate dev",
     "build": "bun build source/entry.ts --compile --outfile=stocky"
   },
   "dependencies": {
