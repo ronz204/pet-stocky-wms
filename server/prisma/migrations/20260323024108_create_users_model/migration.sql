@@ -22,3 +22,9 @@ ALTER TABLE "stocky"."users" ADD CONSTRAINT "users_tenantId_fkey" FOREIGN KEY ("
 
 -- Enable Row Level Security
 ALTER TABLE "stocky"."users" ENABLE ROW LEVEL SECURITY;
+
+-- Tenant Isolation Policy
+CREATE POLICY "tenant_isolation" ON "stocky"."users"
+    FOR ALL
+    USING ("tenantId" = current_setting('app.current_tenant')::INTEGER)
+    WITH CHECK ("tenantId" = current_setting('app.current_tenant')::INTEGER);
