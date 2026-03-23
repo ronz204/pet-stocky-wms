@@ -1,0 +1,31 @@
+model Movement {
+  id       String       @id @default(uuid())
+  type     MovementType
+  quantity Decimal      @default(0)
+
+  productId String // Foreign key to Product
+  product   Product @relation(fields: [productId], references: [id])
+
+  stockLotId String? // Optional foreign key to StockLot
+  stockLot   StockLot? @relation(fields: [stockLotId], references: [id])
+
+  fromLocationId String? // For OUTBOUND and TRANSFER
+  fromLocation   Location? @relation("MovementSource", fields: [fromLocationId], references: [id])
+
+  toLocationId String? // For INBOUND and TRANSFER
+  toLocation   Location? @relation("MovementDest", fields: [toLocationId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("movements")
+  @@schema("stocky")
+}
+
+enum MovementType {
+  INBOUND // Inbound (Purchase, Production, Return)
+  OUTBOUND // Outflow (Sales, Consumption, Shrinkage)
+  TRANSFER // Internal movement (Location A -> B)
+
+  @@schema("stocky")
+}

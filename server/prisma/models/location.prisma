@@ -10,6 +10,9 @@ model Location {
 
   stockLots StockLot[]
 
+  movementsAsSource Movement[] @relation("MovementSource")
+  movementsAsDest   Movement[] @relation("MovementDest")
+
   wereHouseId String // Foreign key to Werehouse
   wereHouse   Werehouse @relation(fields: [wereHouseId], references: [id])
 

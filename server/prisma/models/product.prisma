@@ -7,6 +7,7 @@ model Product {
   uow String @default("UNIT")
 
   stockLots StockLot[]
+  movements Movement[]
 
   weight Decimal @default(0) @db.Decimal(10, 2) // kg
   volume Decimal @default(0) @db.Decimal(10, 2) // m3
