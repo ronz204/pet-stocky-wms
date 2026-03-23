@@ -1,0 +1,27 @@
+/// Inventory Lot. This is where the actual quantity is recorded.
+/// Rule: Total inventory is the sum of all active StockLots.
+model StockLot {
+  id String @id @default(uuid())
+
+  productId String // Foreign key to Product
+  product   Product @relation(fields: [productId], references: [id])
+
+  locationId String // Foreign key to Location
+  location   Location @relation(fields: [locationId], references: [id])
+
+  quantity Decimal     @default(0)
+  status   StockStatus @default(AVAILABLE)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("stock_lots")
+  @@schema("stocky")
+}
+
+enum StockStatus {
+  AVAILABLE
+  RESERVED
+
+  @@schema("stocky")
+}

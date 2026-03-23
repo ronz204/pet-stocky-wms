@@ -8,6 +8,8 @@ model Location {
 
   isActive Boolean @default(true)
 
+  stockLots StockLot[]
+
   wereHouseId String // Foreign key to Werehouse
   wereHouse   Werehouse @relation(fields: [wereHouseId], references: [id])
 
