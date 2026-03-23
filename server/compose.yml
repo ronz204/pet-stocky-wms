@@ -1,0 +1,12 @@
+services:
+  postgres:
+    env_file: .env.local
+    image: postgres:16-alpine
+    restart: unless-stopped
+    container_name: postgres
+    networks:
+      - stocky-net
+    ports:
+      - "5432:5432"
+    volumes:
+      - stocky-data:/var/lib/postgresql/data

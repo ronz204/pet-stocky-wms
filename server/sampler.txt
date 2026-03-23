@@ -1,19 +1,42 @@
+# compose.base.yml
 services:
-  graphql:
-    env_file: ".env"
+  api:
+    networks:
+      - stocky-net
+    depends_on:
+      postgres: # Wait for the database to be healthy
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    networks:
+      - stocky-net
+    volumes:
+      - stocky-data:/var/lib/postgresql/data
+    healthcheck: # Use pg_isready to check if the database is ready
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+
+# compose.dev.yml
+services:
+  api:
     build:
       context: .
       target: development
       dockerfile: dockerfile
-    container_name: stocky
+    extends:
+      service: api
+      file: compose.base.yml
+    container_name: stocky-dev
     restart: unless-stopped
-    networks:
-      - stocky-net
+    env_file: .env.dev
     ports:
       - "3000:3000"
-    depends_on:
-      postgres: # Wait for the database to be healthy
-        condition: service_healthy
     develop:
       watch:
         # Sync source code changes
@@ -30,6 +53,31 @@ services:
         # Rebuild when dependencies change
         - action: rebuild
           path: ./bun.lock
+
+  postgres:
+    extends:
+      service: postgres
+      file: compose.base.yml
+    container_name: postgres-dev
+    restart: unless-stopped
+    env_file: .env.dev
+    ports:
+      - "5432:5432"
+
+
+# compose.prod.yml
+services:
+  api:
+    build:
+      context: .
+      target: production
+      dockerfile: dockerfile
+    extends:
+      service: api
+      file: compose.base.yml
+    container_name: stocky-prod
+    restart: unless-stopped
+    env_file: .env.prod
     healthcheck: # Use curl to check if the application is healthy
       test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
       interval: 10s
@@ -38,20 +86,9 @@ services:
       start_period: 15s
   
   postgres:
-    env_file: ".env"
-    image: postgres:16-alpine
-    container_name: postgres
+    extends:
+      service: postgres
+      file: compose.base.yml
+    container_name: postgres-prod
     restart: unless-stopped
-    networks:
-      - stocky-net
-    ports:
-      - "5432:5432"
-    volumes:
-      - stocky-data:/var/lib/postgresql/data
-    healthcheck:
-      # Use pg_isready to check if the database is ready
-      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 15s
+    env_file: .env.prod

@@ -1,7 +1,7 @@
 name: stocky
 
 include:
-  - path: ./server/compose.dev.yml
+  - path: ./server/compose.yml
 
 volumes:
   stocky-data:
