@@ -1,14 +1,14 @@
 /// Inventory Lot. This is where the actual quantity is recorded.
 /// Rule: Total inventory is the sum of all active StockLots.
 model StockLot {
-  id String @id @default(uuid())
+  id Int @id @default(autoincrement())
 
   movements Movement[]
 
-  productId String // Foreign key to Product
+  productId Int // Foreign key to Product
   product   Product @relation(fields: [productId], references: [id])
 
-  locationId String // Foreign key to Location
+  locationId Int // Foreign key to Location
   location   Location @relation(fields: [locationId], references: [id])
 
   quantity Decimal     @default(0)
