@@ -1,6 +1,6 @@
 /// Specific location within the warehouse (Bin)
 model Location {
-  id   String @id @default(uuid())
+  id   Int    @id @default(autoincrement())
   code String
 
   maxWeight Decimal? // kg
@@ -13,7 +13,7 @@ model Location {
   movementsAsSource Movement[] @relation("MovementSource")
   movementsAsDest   Movement[] @relation("MovementDest")
 
-  wereHouseId String // Foreign key to Werehouse
+  wereHouseId Int // Foreign key to Werehouse
   wereHouse   Werehouse @relation(fields: [wereHouseId], references: [id])
 
   createdAt DateTime @default(now())
