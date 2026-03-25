@@ -24,7 +24,7 @@ const StockLotRequest = t.Object({
 const StockLotResponse = t.Object({
   totalItems: t.Number(),
   totalQuantity: t.Number(),
-  products: t.Array(StockLotDTO),
+  items: t.Array(StockLotDTO),
 });
 
 export const StockLotSchema = {
