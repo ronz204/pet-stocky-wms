@@ -1,7 +1,7 @@
 import { t, type Static } from "elysia";
 import { StockStatus } from "@prisma/enums";
 
-export const StockLotDTO = t.Object({
+const StockLotDTO = t.Object({
   sku: t.String(),
   name: t.String(),
   location: t.String(),
@@ -35,7 +35,6 @@ export const StockLotSchema = {
   },
 } as const;
 
-export type StockLotDTO = Static<typeof StockLotDTO>;
 export type StockLotParams = Static<typeof StockLotParams>;
 export type StockLotRequest = Static<typeof StockLotRequest>;
 export type StockLotResponse = Static<typeof StockLotResponse>;
