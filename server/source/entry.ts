@@ -1,5 +1,5 @@
 import { Elysia } from "elysia";
-import { HealthPlugin } from "@shared/plugins/health.plugin";
+import { HealthPlugin } from "@plugins/health.plugin";
 import { InventoryPlugin } from "@features/inventory/inventory.plugin";
 
 const app = new Elysia({ prefix: "/api" })
