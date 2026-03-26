@@ -1,14 +1,13 @@
 /// Specific location within the warehouse (Bin)
 model Location {
-  id   Int    @id @default(autoincrement())
-  code String
+  id       Int     @id @default(autoincrement())
+  code     String // Ex: PAS-01-NIV-02-POS-04
+  isActive Boolean @default(true)
 
   maxWeight Decimal? // kg
   maxVolume Decimal? // m3
 
-  isActive Boolean @default(true)
-
-  stockLots StockLot[]
+  stocks Stock[]
 
   movementsAsSource Movement[] @relation("MovementSource")
   movementsAsDest   Movement[] @relation("MovementDest")

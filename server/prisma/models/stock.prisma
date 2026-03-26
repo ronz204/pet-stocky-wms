@@ -1,6 +1,6 @@
 /// Inventory Lot. This is where the actual quantity is recorded.
-/// Rule: Total inventory is the sum of all active StockLots.
-model StockLot {
+/// Rule: Total inventory is the sum of all active Stock.
+model Stock {
   id Int @id @default(autoincrement())
 
   movements Movement[]
@@ -17,7 +17,7 @@ model StockLot {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("stock_lots")
+  @@map("stocks")
   @@schema("stocky")
 }
 

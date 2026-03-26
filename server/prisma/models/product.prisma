@@ -4,9 +4,9 @@ model Product {
   sku  String @unique
   name String
 
-  uow String @default("UNIT")
+  uom String @default("UNIT") // UNIT, KG, LITRO...
 
-  stockLots StockLot[]
+  stocks    Stock[]
   movements Movement[]
 
   weight Decimal @default(0) @db.Decimal(10, 2) // kg

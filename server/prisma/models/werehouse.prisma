@@ -1,9 +1,7 @@
 /// Physical Warehouse (There may be multiple buildings/warehouses)
 model Werehouse {
-  id      Int    @id @default(autoincrement())
-  code    String @unique
-  name    String
-  address String
+  id   Int    @id @default(autoincrement())
+  name String @unique
 
   locations Location[]
 

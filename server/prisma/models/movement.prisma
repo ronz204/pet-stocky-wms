@@ -1,13 +1,15 @@
+/// Inventory Movement. Immutable.
 model Movement {
-  id       Int          @id @default(autoincrement())
-  type     MovementType
-  quantity Decimal      @default(0)
+  id       Int     @id @default(autoincrement())
+  quantity Decimal @default(0)
+
+  type MovementType
 
   productId Int // Foreign key to Product
   product   Product @relation(fields: [productId], references: [id])
 
-  stockLotId Int? // Optional foreign key to StockLot
-  stockLot   StockLot? @relation(fields: [stockLotId], references: [id])
+  stockId Int? // Optional foreign key to StockLot
+  stock   Stock? @relation(fields: [stockId], references: [id])
 
   fromLocationId Int? // For OUTBOUND and TRANSFER
   fromLocation   Location? @relation("MovementSource", fields: [fromLocationId], references: [id])
