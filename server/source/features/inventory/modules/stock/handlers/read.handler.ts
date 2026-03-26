@@ -14,8 +14,8 @@ export class ReadStockHandler implements Handler<ReadStockRequest, ReadStockResp
     const readQuery = new ReadStockSpecify(request).toQuery();
 
     const [stats, data] = await Promise.all([
-      this.prisma.stockLot.aggregate(statsQuery),
-      this.prisma.stockLot.findMany(readQuery),
+      this.prisma.stock.aggregate(statsQuery),
+      this.prisma.stock.findMany(readQuery),
     ]);
   };
 };

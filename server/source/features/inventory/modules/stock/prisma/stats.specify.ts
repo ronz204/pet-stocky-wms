@@ -1,6 +1,6 @@
 import { Specify } from "@contracts/specify.contract";
 import { SearchStockSpecify } from "./search.specify";
-import type { StockLotAggregateArgs } from "@prisma/models";
+import type { StockAggregateArgs } from "@prisma/models";
 import type { ReadStockRequest } from "../schemas/read.schema";
 
 export class StatsStockSpecify extends Specify {
@@ -13,6 +13,6 @@ export class StatsStockSpecify extends Specify {
       where: where.toQuery(),
       _count: { id: true },
       _sum: { quantity: true },
-    } as const satisfies StockLotAggregateArgs;
+    } as const satisfies StockAggregateArgs;
   };
 };

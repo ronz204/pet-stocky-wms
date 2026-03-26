@@ -1,6 +1,6 @@
 import { Specify } from "@contracts/specify.contract";
 import { SearchStockSpecify } from "./search.specify";
-import type { StockLotFindManyArgs } from "@prisma/models";
+import type { StockFindManyArgs } from "@prisma/models";
 import type { ReadStockRequest } from "../schemas/read.schema";
 
 export class ReadStockSpecify extends Specify {
@@ -35,6 +35,6 @@ export class ReadStockSpecify extends Specify {
           },
         },
       },
-    } as const satisfies StockLotFindManyArgs;
+    } as const satisfies StockFindManyArgs;
   };
 };

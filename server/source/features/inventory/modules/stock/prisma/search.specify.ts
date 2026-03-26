@@ -1,5 +1,5 @@
 import { Specify } from "@contracts/specify.contract";
-import type { StockLotWhereInput } from "@prisma/models";
+import type { StockWhereInput } from "@prisma/models";
 
 interface SpecifyArgs {
   productId?: number;
@@ -17,6 +17,6 @@ export class SearchStockSpecify extends Specify {
         code: this.args.locationCode,
         wereHouseId: this.args.warehouseId,
       },
-    } as const satisfies StockLotWhereInput;
+    } as const satisfies StockWhereInput;
   };
 };
