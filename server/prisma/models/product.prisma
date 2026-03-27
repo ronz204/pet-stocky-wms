@@ -6,8 +6,8 @@ model Product {
 
   uom String @default("UNIT") // UNIT, KG, LITRO...
 
-  stocks    Stock[]
-  movements Movement[]
+  //stocks    Stock[]
+  //movements Movement[]
 
   weight Decimal @default(0) @db.Decimal(10, 2) // kg
   volume Decimal @default(0) @db.Decimal(10, 2) // m3
