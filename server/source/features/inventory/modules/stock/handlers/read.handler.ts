@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { ReadStockMapper } from "../mapping/read.mapper";
 import { ReadStockSpecify } from "../prisma/read.specify";
 import { StatsStockSpecify } from "../prisma/stats.specify";
 
@@ -18,18 +19,6 @@ export class ReadStockHandler implements Handler<ReadStockRequest, ReadStockResp
       this.prisma.stock.findMany(readQuery),
     ]);
 
-    return {
-      totalItems: stats._count.id,
-      totalQuantity: stats._sum.quantity?.toNumber() ?? 0,
-      items: data.map((item) => ({
-        sku: item.product.sku,
-        name: item.product.name,
-        quantity: item.quantity.toNumber(),
-        status: item.status,
-        warehouse: item.location.warehouse.name,
-        location: item.location.code,
-        stocklotId: item.id,
-      })),
-    };
+    return ReadStockMapper.toResponse(data, stats);
   };
 };
