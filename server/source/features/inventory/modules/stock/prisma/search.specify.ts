@@ -15,7 +15,7 @@ export class SearchStockSpecify extends Specify {
       productId: this.args.productId,
       location: {
         code: this.args.locationCode,
-        werehouseId: this.args.warehouseId,
+        warehouseId: this.args.warehouseId,
       },
     } as const satisfies StockWhereInput;
   };

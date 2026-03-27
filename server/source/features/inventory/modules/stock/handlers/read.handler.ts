@@ -26,7 +26,7 @@ export class ReadStockHandler implements Handler<ReadStockRequest, ReadStockResp
         name: item.product.name,
         quantity: item.quantity.toNumber(),
         status: item.status,
-        warehouse: item.location.werehouse.name,
+        warehouse: item.location.warehouse.name,
         location: item.location.code,
         stocklotId: item.id,
       })),

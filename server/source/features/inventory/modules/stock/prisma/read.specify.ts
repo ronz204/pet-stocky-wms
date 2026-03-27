@@ -27,7 +27,7 @@ export class ReadStockSpecify extends Specify {
           select: {
             code: true,
 
-            werehouse: {
+            warehouse: {
               select: {
                 name: true,
               },
