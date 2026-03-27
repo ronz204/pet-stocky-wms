@@ -12,7 +12,6 @@ export const ReadStockPlugin = new Elysia({ name: "read.stock" })
   }))
   
   .get("/stock", async ({ query, status, readSH }) => {
-    console.log(query);
     const response = await readSH.handle({ query });
     return status(200, response);
   }, {
