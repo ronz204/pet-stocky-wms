@@ -11,14 +11,14 @@ const StockDTO = t.Object({
   status: t.Enum(StockStatus),
 });
 
-export const ReadStockParams = t.Object({
+export const ReadStockQuery = t.Object({
   productId: t.Optional(t.Number()),
   warehouseId: t.Optional(t.Number()),
   locationCode: t.Optional(t.String()),
 });
 
 export const ReadStockRequest = t.Object({
-  params: ReadStockParams,
+  query: t.Optional(ReadStockQuery),
 });
 
 export const ReadStockResponse = t.Object({
@@ -27,6 +27,6 @@ export const ReadStockResponse = t.Object({
   items: t.Array(StockDTO),
 });
 
-export type ReadStockParams = Static<typeof ReadStockParams>;
+export type ReadStockQuery = Static<typeof ReadStockQuery>;
 export type ReadStockRequest = Static<typeof ReadStockRequest>;
 export type ReadStockResponse = Static<typeof ReadStockResponse>;

@@ -8,14 +8,14 @@ interface SpecifyArgs {
 };
 
 export class SearchStockSpecify extends Specify {
-  constructor(private readonly args: SpecifyArgs) {super()};
+  constructor(private readonly args: SpecifyArgs = {}) {super()};
 
   public override toQuery() {
     return {
       productId: this.args.productId,
       location: {
         code: this.args.locationCode,
-        wereHouseId: this.args.warehouseId,
+        werehouseId: this.args.warehouseId,
       },
     } as const satisfies StockWhereInput;
   };

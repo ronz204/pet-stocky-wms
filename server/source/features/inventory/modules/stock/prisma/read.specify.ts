@@ -7,7 +7,7 @@ export class ReadStockSpecify extends Specify {
   constructor(private readonly args: ReadStockRequest) {super()};
   
   public override toQuery() {
-    const where = new SearchStockSpecify(this.args.params);
+    const where = new SearchStockSpecify(this.args.query);
 
     return {
       where: where.toQuery(),
@@ -27,7 +27,7 @@ export class ReadStockSpecify extends Specify {
           select: {
             code: true,
 
-            wereHouse: {
+            werehouse: {
               select: {
                 name: true,
               },
