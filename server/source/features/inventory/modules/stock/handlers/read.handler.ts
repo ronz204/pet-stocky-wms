@@ -19,6 +19,6 @@ export class ReadStockHandler implements Handler<ReadStockRequest, ReadStockResp
       this.prisma.stock.findMany(readQuery),
     ]);
 
-    return ReadStockMapper.toResponse(data, stats);
+    return ReadStockMapper.toResponse({ data, stats });
   };
 };

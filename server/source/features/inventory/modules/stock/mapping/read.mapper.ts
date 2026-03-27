@@ -11,11 +11,13 @@ type ReadStockPayload = StockGetPayload<ReadStockQuery>;
 type StatsStockQuery = ReturnType<typeof StatsStockSpecify.prototype.toQuery>;
 type StatsStockPayload = GetStockAggregateType<StatsStockQuery>;
 
+interface MapData {
+  data: ReadStockPayload[];
+  stats: StatsStockPayload;
+};
+
 export class ReadStockMapper {
-  public static toResponse(
-    data: ReadStockPayload[],
-    stats: StatsStockPayload,
-  ): ReadStockResponse {
+  public static toResponse({ data, stats }: MapData): ReadStockResponse {
     return {
       totalItems: stats._count.id,
       totalQuantity: stats._sum.quantity?.toNumber() ?? 0,
