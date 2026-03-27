@@ -1,7 +1,7 @@
 /// Inventory Movement. Immutable.
 model Movement {
   id       Int     @id @default(autoincrement())
-  quantity Decimal @default(0)
+  quantity Decimal @default(0) @db.Decimal(10, 2)
 
   type MovementType
 

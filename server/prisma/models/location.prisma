@@ -4,16 +4,16 @@ model Location {
   code     String // Ex: PAS-01-NIV-02-POS-04
   isActive Boolean @default(true)
 
-  maxWeight Decimal? // kg
-  maxVolume Decimal? // m3
+  maxWeight Decimal? @db.Decimal(10, 2) // kg
+  maxVolume Decimal? @db.Decimal(10, 2) // m3
 
   stocks Stock[]
 
   movementsAsSource Movement[] @relation("MovementSource")
   movementsAsDest   Movement[] @relation("MovementDest")
 
-  werehouseId Int // Foreign key to Werehouse
-  werehouse   Werehouse @relation(fields: [werehouseId], references: [id])
+  warehouseId Int // Foreign key to Warehouse
+  warehouse   Warehouse @relation(fields: [warehouseId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
