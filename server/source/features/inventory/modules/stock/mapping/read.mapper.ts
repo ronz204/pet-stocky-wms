@@ -6,14 +6,11 @@ import { ReadStockSpecify } from "../prisma/read.specify";
 import { StatsStockSpecify } from "../prisma/stats.specify";
 
 type ReadStockQuery = ReturnType<typeof ReadStockSpecify.prototype.toQuery>;
-type ReadStockPayload = StockGetPayload<ReadStockQuery>;
-
 type StatsStockQuery = ReturnType<typeof StatsStockSpecify.prototype.toQuery>;
-type StatsStockPayload = GetStockAggregateType<StatsStockQuery>;
 
 interface MapData {
-  data: ReadStockPayload[];
-  stats: StatsStockPayload;
+  data: StockGetPayload<ReadStockQuery>[];
+  stats: GetStockAggregateType<StatsStockQuery>;
 };
 
 export class ReadStockMapper {
