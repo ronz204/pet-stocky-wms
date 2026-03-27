@@ -12,8 +12,8 @@ model Location {
   movementsAsSource Movement[] @relation("MovementSource")
   movementsAsDest   Movement[] @relation("MovementDest")
 
-  wereHouseId Int // Foreign key to Werehouse
-  wereHouse   Werehouse @relation(fields: [wereHouseId], references: [id])
+  werehouseId Int // Foreign key to Werehouse
+  werehouse   Werehouse @relation(fields: [werehouseId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

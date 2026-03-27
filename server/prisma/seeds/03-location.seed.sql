@@ -1,7 +1,7 @@
 -- Location Seed Data
 -- Run this third (depends on warehouses)
 
-INSERT INTO "stocky"."locations" ("id", "code", "isActive", "maxWeight", "maxVolume", "wereHouseId", "createdAt", "updatedAt") VALUES
+INSERT INTO "stocky"."locations" ("id", "code", "isActive", "maxWeight", "maxVolume", "werehouseId", "createdAt", "updatedAt") VALUES
 -- Main Distribution Center locations
 (1, 'MDC-A01-L01-P01', true, 1000.00, 10.00, 1, NOW(), NOW()),
 (2, 'MDC-A01-L01-P02', true, 1000.00, 10.00, 1, NOW(), NOW()),
