@@ -1,5 +1,9 @@
-import { Elysia } from "elysia";
+import { Elysia, type ElysiaConfig } from "elysia";
 import { StockPlugin } from "./modules/stock/stock.plugin";
 
-export const InventoryPlugin = new Elysia({ name: "inventory.plugin" })
+const config: ElysiaConfig<"/inventory"> = {
+  prefix: "/inventory", name: "inventory.plugin"
+};
+
+export const InventoryPlugin = new Elysia(config)
   .use(StockPlugin);
