@@ -2,12 +2,11 @@
   "name": "stocky",
   "version": "1.0.50",
   "scripts": {
-    "start:prod": "bun run source/entry.ts",
-    "start:dev": "bun run --watch source/entry.ts",
+    "start:dev": "bun run --watch source/boot.ts",
     "prisma:studio": "bunx --bun prisma studio",
     "prisma:generate": "bunx --bun prisma generate",
     "prisma:migrate": "bunx --bun prisma migrate dev",
-    "build": "bun build source/entry.ts --compile --outfile=stocky"
+    "build": "bun build source/boot.ts --compile --outfile=stocky"
   },
   "dependencies": {
     "@elysiajs/cors": "^1.4.1",
@@ -24,5 +23,5 @@
   },
   "private": true,
   "type": "module",
-  "module": "src/entry.ts"
+  "module": "src/boot.ts"
 }
