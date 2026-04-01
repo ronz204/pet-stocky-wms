@@ -29,11 +29,12 @@
       "@seeders/*": ["./prisma/seeds/*"],
       "@prisma/*": ["./generated/prisma/*"],
 
-      "@shared/*": ["./source/shared/*"],
+      "@auth/*": ["./source/auth/*"],
+      "@repos/*": ["./source/repos/*"],
+      "@configs/*": ["./source/configs/*"],
       "@plugins/*": ["./source/plugins/*"],
       "@features/*": ["./source/features/*"],
       "@database/*": ["./source/database/*"],
-      "@contracts/*": ["./source/contracts/*"],
     }
   }
 }
