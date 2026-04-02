@@ -7,6 +7,7 @@
       "dependencies": {
         "@elysiajs/cors": "^1.4.1",
         "@elysiajs/graphql-yoga": "^1.4.0",
+        "@elysiajs/jwt": "^1.4.1",
         "@prisma/adapter-pg": "^7.3.0",
         "@prisma/client": "^7.5.0",
         "elysia": "^1.4.22",
@@ -39,6 +40,8 @@
     "@elysiajs/cors": ["@elysiajs/cors@1.4.1", "", { "peerDependencies": { "elysia": ">= 1.4.0" } }, "sha512-lQfad+F3r4mNwsxRKbXyJB8Jg43oAOXjRwn7sKUL6bcOW3KjUqUimTS+woNpO97efpzjtDE0tEjGk9DTw8lqTQ=="],
 
     "@elysiajs/graphql-yoga": ["@elysiajs/graphql-yoga@1.4.0", "", { "dependencies": { "graphql": "^16.6.0", "graphql-mobius": "^0.1.11", "graphql-yoga": "^3.9.1" }, "peerDependencies": { "elysia": ">= 1.4.0" } }, "sha512-c47uOx8lHU1WvHqj7jymUF8ys0i3F9szBwI3HAc3dTxTkTBVJkZTND9QuRxfXU3RtSa/rXOzI4su+cfVvZpaYQ=="],
+
+    "@elysiajs/jwt": ["@elysiajs/jwt@1.4.1", "", { "dependencies": { "jose": "^6.0.11" }, "peerDependencies": { "elysia": ">= 1.4.27" } }, "sha512-Qx28XE7hUf2XK/+HZB+hOBGSq6dPs4u1lk80wNge9jijAfzCwftxjOiAWO57RKYSEMdJTOG1ItEL5fbXjJyWsA=="],
 
     "@envelop/core": ["@envelop/core@3.0.6", "", { "dependencies": { "@envelop/types": "3.0.2", "tslib": "^2.5.0" } }, "sha512-06t1xCPXq6QFN7W1JUEf68aCwYN0OUDNAIoJe7bAqhaoa2vn7NCcuX1VHkJ/OWpmElUgCsRO6RiBbIru1in0Ig=="],
 
@@ -219,6 +222,8 @@
     "isexe": ["isexe@2.0.0", "", {}, "sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw=="],
 
     "jiti": ["jiti@2.6.1", "", { "bin": { "jiti": "lib/jiti-cli.mjs" } }, "sha512-ekilCSN1jwRvIbgeg/57YFh8qQDNbwDb9xT/qu2DAHbFFZUicIl4ygVaAvzveMhMVr3LnpSKTNnwt8PoOfmKhQ=="],
+
+    "jose": ["jose@6.2.2", "", {}, "sha512-d7kPDd34KO/YnzaDOlikGpOurfF0ByC2sEV4cANCtdqLlTfBlw2p14O/5d/zv40gJPbIQxfES3nSx1/oYNyuZQ=="],
 
     "lilconfig": ["lilconfig@2.1.0", "", {}, "sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ=="],
 
