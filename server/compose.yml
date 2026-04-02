@@ -1,3 +1,5 @@
+name: stocky-api
+
 services:
   postgres:
     env_file: .env.local
@@ -16,3 +18,13 @@ services:
       timeout: 5s
       retries: 5
       start_period: 15s
+
+volumes:
+  stocky-data:
+    driver: local
+    name: stocky-data
+
+networks:
+  stocky-net:
+    driver: bridge
+    name: stocky-net
