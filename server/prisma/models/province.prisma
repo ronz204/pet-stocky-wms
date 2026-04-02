@@ -1,0 +1,12 @@
+model Province {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  counties County[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("provinces")
+  @@schema("stocky")
+}

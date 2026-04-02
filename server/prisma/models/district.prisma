@@ -1,0 +1,15 @@
+model District {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  // warehouses Warehouse[]
+
+  countyId Int // Foreign key to County
+  county   County @relation(fields: [countyId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("districts")
+  @@schema("stocky")
+}
