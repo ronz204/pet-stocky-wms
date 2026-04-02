@@ -3,7 +3,6 @@ CREATE TABLE "stocky"."warehouses" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "code" TEXT NOT NULL,
-    "isActive" BOOLEAN NOT NULL DEFAULT true,
     "districtId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,

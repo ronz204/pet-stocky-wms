@@ -2,7 +2,6 @@ model Warehouse {
   id       Int     @id @default(autoincrement())
   name     String
   code     String  @unique
-  isActive Boolean @default(true)
 
   districtId Int // Foreign key to District
   district   District @relation(fields: [districtId], references: [id])
